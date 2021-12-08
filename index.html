@@ -1,29 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
     <title>Weather Dashboard</title>
 </head>
 <body>
 
     <!-- header -->
     <header>
-        <h1 id="page-title" class="page-title">Weather Dashboard</h1>
+        <div class="col mx-auto text-center bg-primary text-light">
+            <h1 id="page-title" class="page-title">Weather Dashboard</h1>
+        </div>
     </header>
 
-    <main id="page-content">
+    <main class="row vw-100 px-2" id="page-content">
 
         <!-- search -->
+        <div class="col-12 col-lg-3">
+            <form action="" class="card" id="search-form">
+                
+                <h2 class="card-title">Search for a City:</h2>
+                <div id="map-container" style="overflow-x: hidden;">
+                    <div id="map" class="map_part" style="height:400px">
+                        <iframe id="map-canvas" class="map_part" width="100%" height="400px" frameborder="0"  marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%&hl=en&q=Irvine&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                    </div>
+                </div>
+                <div class="card-body p-1">
+                    <input type="text" name="search" id="search" class="form-control mb-2" placeholder="Type to Search">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                    <!-- <span class="sep btn border-bottom w-100"></span> -->
+                    <hr />
+
+                    <!-- history buttons -->
+                    <span style="display:block; text-align:center">Recent Searches</span>
+                    <ul class="history list-group list-inline" id="history">
+                        <li class="btn btn-secondary mt-2">Sample City</li>
+
+                    </ul>
+                </div>
+            </form>
+
+        </div>
+
+        <!-- results -->
+        <div class="col-12 col-lg-9 d-flex flex-column  results-wrapper" id="results-wrapper">
+            <!-- location info -->
+            <div class="current-weather card w-100 m-0" id="current-weather">
+                <h2 class='card-header bg-primary text-light'>Search to show the weather <i>icon</i></h2>
+                <ul class='card-body list-group list-inline p-2'>
+                    <li class='my-1' id="current-temp">Temp: <span></span> ℉</li>
+                    <li class='my-1' id="current-wind">Wind: <span></span> MPH</li>
+                    <li class='my-1' id="current-humidity">Humidity: <span></span>%</li>
+                    <li class='my-1' id="current-uvi">UV Index: <span class="btn bg-success">NaN</span></li>
+                </ul>
+                
+            </div>
+            
+            <!-- forecast -->
+            <div class="forecast-wrapper row my-2 justify-content-between" id="forecast-wrapper">
+                <div class="col-12 col-md-4 col-lg-2 mx-0 my-2 pr-lg-0">
+                    <div class="forecast card  bg-info" id="today-plus-one">
+                        <h5 class="date text-light card-title">12/7/2021</h5>
+                        <ul class='card-body list-group list-inline p-1'>
+                            <li class=' text-light' id="current-uvi"><span>ICON</span></li>
+                            <li class='my-1 text-light' id="current-temp">Temp: <span></span>℉</li>
+                            <li class='my-1 text-light' id="current-wind">Wind: <span></span>MPH</li>
+                            <li class='my-1 text-light' id="current-humidity">Humidity: <span></span>%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mx-0 my-2 px-lg-0">
+                    <div class="forecast card  bg-info" id="today-plus-one">
+                        <h5 class="date text-light card-title">12/7/2021</h5>
+                        <ul class='card-body list-group list-inline p-1'>
+                            <li class=' text-light' id="current-uvi"><span>ICON</span></li>
+                            <li class='my-1 text-light' id="current-temp">Temp: <span></span>℉</li>
+                            <li class='my-1 text-light' id="current-wind">Wind: <span></span>MPH</li>
+                            <li class='my-1 text-light' id="current-humidity">Humidity: <span></span>%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-2 mx-0 my-2 px-lg-0">
+                    <div class="forecast card  bg-info" id="today-plus-one">
+                        <h5 class="date text-light card-title">12/7/2021</h5>
+                        <ul class='card-body list-group list-inline p-1'>
+                            <li class=' text-light' id="current-uvi"><span>ICON</span></li>
+                            <li class='my-1 text-light' id="current-temp">Temp: <span></span>℉</li>
+                            <li class='my-1 text-light' id="current-wind">Wind: <span></span>MPH</li>
+                            <li class='my-1 text-light' id="current-humidity">Humidity: <span></span>%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2 mx-0 my-2 px-lg-0">
+                    <div class="forecast card  bg-info" id="today-plus-one">
+                        <h5 class="date text-light card-title">12/7/2021</h5>
+                        <ul class='card-body list-group list-inline p-1'>
+                            <li class=' text-light' id="current-uvi"><span>ICON</span></li>
+                            <li class='my-1 text-light' id="current-temp">Temp: <span></span>℉</li>
+                            <li class='my-1 text-light' id="current-wind">Wind: <span></span>MPH</li>
+                            <li class='my-1 text-light' id="current-humidity">Humidity: <span></span>%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2 mx-0 my-2 pl-lg-0">
+                    <div class="forecast card  bg-info" id="today-plus-one">
+                        <h5 class="date text-light card-title">12/7/2021</h5>
+                        <ul class='card-body list-group list-inline p-1'>
+                            <li class=' text-light' id="current-uvi"><span>ICON</span></li>
+                            <li class='my-1 text-light' id="current-temp">Temp: <span></span>℉</li>
+                            <li class='my-1 text-light' id="current-wind">Wind: <span></span>MPH</li>
+                            <li class='my-1 text-light' id="current-humidity">Humidity: <span></span>%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <!-- location info -->
-
-        <!-- forecast -->
-
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js"></script>
     <!-- config file to store env while testing -->
     <script type="text/javascript" src="config.js"></script>
     <script src='./assets/js/script.js'></script>
