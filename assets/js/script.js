@@ -85,11 +85,16 @@ $(document).ready(function () {
         var location = $('#search').val();
         console.log('location: ' + location);
         getWeatherData(location);
-        searchHistory.push(location);
+
+        if (!searchHistory.includes(location)){
+            searchHistory.push(location);
+        }
+        
         if (searchHistory.length > 5) {
             searchHistory.shift();
         }
         saveHistory();
+        loadHistory();
 
     })
     
@@ -147,5 +152,10 @@ $(document).ready(function () {
         console.log('replaceLocationSrc', srcText)
         $(src).attr('src', srcText);
     }
+
+    $("#search-form").on('click','li', function(e) {
+        var result = $(this).text()
+        getWeatherData(result)
+    })
 
 })
