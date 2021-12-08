@@ -31,17 +31,17 @@ $(document).ready(function () {
             return false;
 
         } 
-
         searchHistory = h;
         $("#history").html('');
-        console.log($("#history").innerHTML)
-        searchHistory.map(function (location) {
+
+        for (var location of searchHistory) {
             makeHistory(location);
-        })
+        }
     }
     
     function makeHistory(location) {
-        $("#history").append('<li>').addClass('btn btn-secondary mt-2').text(location)
+        var li = $('<li>').addClass('btn btn-secondary mt-2').text(location)
+        $("#history").append(li);
     }
 
     loadHistory();
