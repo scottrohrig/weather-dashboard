@@ -1,0 +1,33 @@
+.map_part {
+    height: 300px;
+}
+
+#current-date {
+    font-size: 2rem;
+}
+
+#current-icon-wrapper {
+    position: absolute;
+    left: 7.5rem;
+    top: 50%;
+}
+
+@media only screen and (max-width: 992px) {
+    .map_part {
+        height: 250px;
+    }
+    .history {
+        display: flex;
+        flex-flow: row wrap;
+    }
+    .history li {
+        flex: 1 0 45%;
+        margin-left: .25rem;
+        margin-right: .25rem;
+    }
+    .card-body {
+        text-align: center;
+        font-size: 1.6em;
+    }
+
+}
