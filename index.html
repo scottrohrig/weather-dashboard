@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="card-body p-1">
-                    <input type="text" name="search" id="search" class="form-control mb-2" placeholder="Type to Search">
+                    <input type="text" name="search" id="search" class="form-control mb-2" placeholder="City, State">
                     <button type="submit" class="btn btn-primary w-100">Search</button>
                     <!-- <span class="sep btn border-bottom w-100"></span> -->
                     <hr />
@@ -48,11 +48,16 @@
         </div>
 
         <!-- results -->
-        <div class="col-12 col-lg-9 d-flex flex-column  results-wrapper" id="results-wrapper">
+        <div class="col-12 col-lg-9 d-flex flex-column results-wrapper" id="results-wrapper">
             <!-- location info -->
             <div class="current-weather card w-100 m-0" id="current-weather">
-                <h2 class='card-header bg-primary text-light'>Search to show the weather <span>SPAN INSIDE</span></h2><span>SPAN OUTSIDE</span>
+                <div class="card-header bg-primary d-flex align-items-center justify-content-between">
+                    <h2 class='text-light'>Search to show the weather </h2><p id='current-date'></p>
+                </div>
                 <ul class='card-body list-group list-inline p-2'>
+                    <li class="current-icon-wrapper">
+                        <img src="http://openweathermap.org/img/w/01d.png" alt="weather icon" id="current-icon">
+                    </li>
                     <li class='my-1' id="current-temp">Temp: <span></span> ℉</li>
                     <li class='my-1' id="current-wind">Wind: <span></span> MPH</li>
                     <li class='my-1' id="current-humidity">Humidity: <span></span>%</li>
@@ -67,7 +72,7 @@
                     <div class="forecast card  bg-primary" id="forecast-1">
                         <h5 class="date text-light card-title">12/7/2021</h5>
                         <ul class='card-body list-group list-inline p-1'>
-                            <li class='text-light'><img alt='weather icon' src="http://openweathermap.org/img/w/01d.png"" class='forecast-icon'></img></li>
+                            <li class='text-light'><img alt='weather icon' src="http://openweathermap.org/img/w/01d.png" class='forecast-icon'></img></li>
                             <li class='my-1 text-light'>Temp: 
                                 <span class="forecast-temp"></span>℉</li>
                             <li class='my-1 text-light'>Wind: 

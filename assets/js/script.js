@@ -1,17 +1,6 @@
-/*
-API calls
-    - use one-call-api <https://openweathermap.org/api/one-call-api>
-        - current > current.uvi|.temp|.humidity|.wind_speed|
-        - requires lon, lat
-        - https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-    - get lon, lat from city search
+/* API syntax
+    - https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
     - api.openweathermap.org/data/2.5/weather?q={city},{state}&appid={API_KEY}
-    - 5-day forecast format
-        - api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
-
-    - temp units is kelvin. 
-    - formula to convert to farenheit is: (k - 273.15) * 1.8 + 32
-
 */
 
 $(document).ready(function () {
@@ -47,15 +36,10 @@ $(document).ready(function () {
     // Get weather data
     function getWeatherData(location) {
         location = location.trim();
-
-        var state = "";
-        if (location.split(",")) {
-            state = "," + location.split(",")[1];
-        }
-
+        
         // make api url
-        var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}${state}&appid=${apiKey}`;
-
+        var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
+        
         // fetch request
         fetch(apiUrl).then(function (response) {
             // response validation
@@ -63,9 +47,20 @@ $(document).ready(function () {
                 // parse response
                 response.json().then(function (data) {
                     showCurrentWeather(data, location);
+                    $("#search").val('');
+                    if (!searchHistory.includes(location)) {
+                        searchHistory.push(location);
+                    }
+            
+                    if (searchHistory.length > 5) {
+                        searchHistory.shift();
+                    }
+                    saveHistory();
+                    loadHistory();
                 });
             } else {
                 console.log("response error: " + response.status);
+                $('#search').trigger('focus');
             }
         });
     }
@@ -77,18 +72,9 @@ $(document).ready(function () {
         if (!location) {
             return false;
         }
-        console.log("location: " + location);
         getWeatherData(location);
 
-        if (!searchHistory.includes(location)) {
-            searchHistory.push(location);
-        }
 
-        if (searchHistory.length > 5) {
-            searchHistory.shift();
-        }
-        saveHistory();
-        loadHistory();
     });
     
     function convertKtoF(kelvin) {
@@ -101,22 +87,19 @@ $(document).ready(function () {
 
         var titleText = `Showing results for ${weather.name}, ${weather.sys.country}`;
         
-
         updateMapFrameSrc(`${location}`);
         
         var today = new Date();
-        var fmtToday = moment(today*1000).format('MM/DD/YYYY');
-        // todo: format with moment
+
+        var fmtToday = moment(today).format("MM/DD/YYYY")
+        var icon     = parseIcon(weather.weather[0].icon);
+        var temp     = convertKtoF(weather.main.temp);
+        var wind     = weather.wind.speed;
+        var humidity = weather.main.humidity;
         
         $("#current-weather h2").text(titleText);
-        // $("#current-weather h2").append("<i>").text('icon ' + today)
-        var dateSpan = $("<span>").text(fmtToday);
-        $("current-weather .card-header").append(dateSpan);
-        
-        var temp = convertKtoF(weather.main.temp);
-        var wind = weather.wind.speed;
-        var humidity = weather.main.humidity;
-
+        $("#current-date").attr('class', 'text-light font-weight-bold' ).text(fmtToday);
+        $("#current-icon").attr('src', icon)
         $("#current-temp span").text(temp);
         $("#current-wind span").text(wind);
         $("#current-humidity span").text(humidity);
@@ -163,7 +146,6 @@ $(document).ready(function () {
                 wind: onecall.daily[i].wind_speed,
                 humidity: onecall.daily[i].humidity
             }
-            console.log(day);
 
             $(this).find('.date').text(day.date);
             $(this).find('.forecast-icon').attr('src', day.icon);
