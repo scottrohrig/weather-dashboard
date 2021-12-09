@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style/style.css">
     <title>Weather Dashboard</title>
 </head>
 <body>
@@ -22,10 +23,10 @@
         <div class="col-12 col-lg-3">
             <form action="" class="card" id="search-form">
                 
-                <h2 class="card-title">Search for a City:</h2>
                 <div id="map-container" style="overflow-x: hidden;">
-                    <div id="map" class="map_part" style="height:400px">
-                        <iframe id="map-canvas" class="map_part" width="100%" height="400px" frameborder="0"  marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%&hl=en&q=Irvine&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                    <h2 class="card-title">Search for a City:</h2>
+                    <div id="map" class="map_part" scrolling="no">
+                        <iframe id="map-canvas" class="map_part" width="100%" height="100%" frameborder="0"  marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%&hl=en&q=Irvine&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
                         <!-- <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-84.46426391601562%2C42.20817645934742%2C-82.65151977539064%2C43.1090040242731&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=10/42.6602/-83.5579">View Larger Map</a></small> -->
                     </div>
                 </div>
@@ -63,60 +64,72 @@
             <!-- forecast -->
             <div class="forecast-wrapper row my-2 justify-content-between" id="forecast-wrapper">
                 <div class="col-12 col-md-4 col-lg-2 mx-0 my-2 pr-lg-0">
-                    <div class="forecast card  bg-info" id="forecast-1">
+                    <div class="forecast card  bg-primary" id="forecast-1">
                         <h5 class="date text-light card-title">12/7/2021</h5>
                         <ul class='card-body list-group list-inline p-1'>
-                            <li class='text-light'><span class='icon'>ICON</span></li>
-                            <li class='my-1 text-light'>Temp: <span></span>℉</li>
-                            <li class='my-1 text-light'>Wind: <span></span>MPH</li>
-                            <li class='my-1 text-light'>Humidity: <span></span>%</li>
+                            <li class='text-light'><img alt='weather icon' src="http://openweathermap.org/img/w/01d.png"" class='forecast-icon'></img></li>
+                            <li class='my-1 text-light'>Temp: 
+                                <span class="forecast-temp"></span>℉</li>
+                            <li class='my-1 text-light'>Wind: 
+                                <span class="forecast-wind"></span>MPH</li>
+                            <li class='my-1 text-light'>Humidity: 
+                                <span class="forecast-humidity"></span>%</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-lg-2 mx-0 my-2 px-lg-0">
-                    <div class="forecast card  bg-info" id="forecast-2">
+                    <div class="forecast card  bg-primary" id="forecast-2">
                         <h5 class="date text-light card-title">12/7/2021</h5>
                         <ul class='card-body list-group list-inline p-1'>
-                            <li class=' text-light'><span>ICON</span></li>
-                            <li class='my-1 text-light'>Temp: <span></span>℉</li>
-                            <li class='my-1 text-light'>Wind: <span></span>MPH</li>
-                            <li class='my-1 text-light'>Humidity: <span></span>%</li>
-                            
+                            <li class='text-light'><img alt='weather icon' src="http://openweathermap.org/img/w/01d.png"" class='forecast-icon'></img></li>
+                            <li class='my-1 text-light'>Temp: 
+                                <span class="forecast-temp"></span>℉</li>
+                            <li class='my-1 text-light'>Wind: 
+                                <span class="forecast-wind"></span>MPH</li>
+                            <li class='my-1 text-light'>Humidity: 
+                                <span class="forecast-humidity"></span>%</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-lg-2 mx-0 my-2 px-lg-0">
-                    <div class="forecast card  bg-info" id="forecast-3">
+                    <div class="forecast card  bg-primary" id="forecast-3">
                         <h5 class="date text-light card-title">12/7/2021</h5>
                         <ul class='card-body list-group list-inline p-1'>
-                            <li class=' text-light'><span>ICON</span></li>
-                            <li class='my-1 text-light'>Temp: <span></span>℉</li>
-                            <li class='my-1 text-light'>Wind: <span></span>MPH</li>
-                            <li class='my-1 text-light'>Humidity: <span></span>%</li>
-                            
+                            <li class='text-light'><img alt='weather icon' src="http://openweathermap.org/img/w/01d.png"" class='forecast-icon'></img></li>
+                            <li class='my-1 text-light'>Temp: 
+                                <span class="forecast-temp"></span>℉</li>
+                            <li class='my-1 text-light'>Wind: 
+                                <span class="forecast-wind"></span>MPH</li>
+                            <li class='my-1 text-light'>Humidity: 
+                                <span class="forecast-humidity"></span>%</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-2 mx-0 my-2 px-lg-0">
-                    <div class="forecast card  bg-info" id="forecast-4">
+                    <div class="forecast card  bg-primary" id="forecast-4">
                         <h5 class="date text-light card-title">12/7/2021</h5>
                         <ul class='card-body list-group list-inline p-1'>
-                            <li class=' text-light'><span>ICON</span></li>
-                            <li class='my-1 text-light'>Temp: <span></span>℉</li>
-                            <li class='my-1 text-light'>Wind: <span></span>MPH</li>
-                            <li class='my-1 text-light'>Humidity: <span></span>%</li>
-                            
+                            <li class='text-light'><img alt='weather icon' src="http://openweathermap.org/img/w/01d.png"" class='forecast-icon'></img></li>
+                            <li class='my-1 text-light'>Temp: 
+                                <span class="forecast-temp"></span>℉</li>
+                            <li class='my-1 text-light'>Wind: 
+                                <span class="forecast-wind"></span>MPH</li>
+                            <li class='my-1 text-light'>Humidity: 
+                                <span class="forecast-humidity"></span>%</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-2 mx-0 my-2 pl-lg-0">
-                    <div class="forecast card  bg-info" id="forecast-5">
+                    <div class="forecast card  bg-primary" id="forecast-5">
                         <h5 class="date text-light card-title">12/7/2021</h5>
                         <ul class='card-body list-group list-inline p-1'>
-                            <li class=' text-light'><span>ICON</span></li>
-                            <li class='my-1 text-light'>Temp: <span></span>℉</li>
-                            <li class='my-1 text-light'>Wind: <span></span>MPH</li>
-                            <li class='my-1 text-light'>Humidity: <span></span>%</li>
+                            <li class='text-light'><img alt='weather icon' src="http://openweathermap.org/img/w/01d.png"" class='forecast-icon'></img></li>
+                            <li class='my-1 text-light'>Temp: 
+                                <span class="forecast-temp"></span>℉</li>
+                            <li class='my-1 text-light'>Wind: 
+                                <span class="forecast-wind"></span>MPH</li>
+                            <li class='my-1 text-light'>Humidity: 
+                                <span class="forecast-humidity"></span>%</li>
                         </ul>
                     </div>
                 </div>

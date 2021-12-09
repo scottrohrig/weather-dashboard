@@ -138,6 +138,13 @@ $(document).ready(function () {
         });
     }
     
+    function fmtDate(date) {
+        return moment(date*1000).format('MM/DD/YYYY');
+    }
+    function parseIcon(icon) {
+        return "http://openweathermap.org/img/w/" + icon + ".png";
+    }
+
     // show 5-day forecast
     function showForecast(onecall) {
 
@@ -149,12 +156,20 @@ $(document).ready(function () {
         // loop thru 5-day forecast
         $('#forecast-wrapper').children().each(function (i) {
 
-            var date = onecall.daily[i].dt
-            var fmtDate = moment(date*1000).format('MM/DD/YYYY')
-            $(this).find('.date').text(fmtDate)
+            var day = {
+                date: fmtDate(onecall.daily[i].dt),
+                temp: convertKtoF(onecall.daily[i].temp.day),
+                icon: parseIcon(onecall.daily[i].weather[0].icon),
+                wind: onecall.daily[i].wind_speed,
+                humidity: onecall.daily[i].humidity
+            }
+            console.log(day);
 
-            setForecastIcon(this, onecall, i)
-
+            $(this).find('.date').text(day.date);
+            $(this).find('.forecast-icon').attr('src', day.icon);
+            $(this).find('.forecast-temp').text(day.temp);
+            $(this).find('.forecast-wind').text(day.wind);
+            $(this).find('.forecast-humidity').text(day.humidity);
         })
 
     }
@@ -170,12 +185,6 @@ $(document).ready(function () {
         } else {
             $("#current-uvi span").addClass("btn bg-danger");
         }
-    }
-
-    function setForecastIcon(inst, onecall, day) {
-        var icon = onecall.daily[day].weather[0].icon;
-        var t = $(inst).children();
-        console.log(t)
     }
 
     function updateMapFrameSrc(location) {
