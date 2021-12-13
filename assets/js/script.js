@@ -5,7 +5,7 @@
 
 $(document).ready(function () {
     // global variables
-    const apiKey = config.API_KEY;
+    const apiKey = '79a5c12694ccbadc732bbe05c679a716';
     var searchHistory = [];
 
     // storage handling
